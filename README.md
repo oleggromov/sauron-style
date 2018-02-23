@@ -11,7 +11,7 @@ Another way of affecting element representation is via external stylesheets. The
 
 Since `getComputedStyle` method is used, reported changes are always sent in a kind of *normalized* form. For example, setting `transform: rotate(-2deg)` for an element will cause the following difference to be reported:
 
-```(javascript)
+```javascript
 {
   transform: {
     cur: "matrix(0.999391, -0.0348995, 0.0348995, 0.999391, 0, 0)",
@@ -22,7 +22,7 @@ Since `getComputedStyle` method is used, reported changes are always sent in a k
 
 Another drawback of using computed style watching is that not only "atomic" CSS props are updated but also compound ones, and vice versa. For example, setting `background: red` will cause the following difference:
 
-```(javascript)
+```javascript
 {
   background: {
     cur: "rgb(255, 255, 0) none repeat scroll 0% 0% / auto padding-box border-box",
@@ -38,7 +38,7 @@ Another drawback of using computed style watching is that not only "atomic" CSS 
 Written above means you should use the difference with care.
 
 ## ToDo
-- split library into modules
+- ~split library into modules~
 - lint
 - test it:
   - write unit tests
