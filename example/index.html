@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <title>SauronStyle Test Page</title>
+
+<style>
+  .blue { color: blue; }
+</style>
+</head>
+<body>
+  <div id="test">A test div <code>#test</code></div>
+
+  <h2>Change styles:</h2>
+  <button id="inline">inline style</button>
+  <button id="className">className</button>
+  <button id="styleElement">a style element</button>
+  <button id="styleElementDiv">a style element into a div</button>
+  <button id="styleElementDivRemove">remove a style element</button>
+  <button id="linkStylesheet">a link[rel="stylesheet"]</button>
+  <button id="linkStylesheetRemove">remove a link[rel="stylesheet"]</button>
+
+  <div id="sample"></div>
+
+<script>
+  const testDiv = document.querySelector('#test')
+
+  document.querySelector('#inline').addEventListener('click', () => {
+    testDiv.style = 'background: yellow;'
+  })
+
+  document.querySelector('#className').addEventListener('click', () => {
+    testDiv.className = 'blue'
+  })
+
+  document.querySelector('#styleElement').addEventListener('click', () => {
+    const style = document.createElement('style')
+    style.type = 'text/css'
+    style.id = 'styleInHead'
+    style.innerHTML = '#test { font-size: 30px; }'
+    document.head.appendChild(style)
+  })
+
+  document.querySelector('#styleElementDiv').addEventListener('click', () => {
+    const style = document.createElement('style')
+    style.type = 'text/css'
+    style.id = 'styleInDiv'
+    style.innerHTML = '#test { transform: rotate(-2deg); }'
+    document.querySelector('#sample').appendChild(style)
+  })
+
+  document.querySelector('#styleElementDivRemove').addEventListener('click', () => {
+    const style = document.querySelector('#styleInDiv')
+    if (style) {
+      style.parentNode.removeChild(style)
+    }
+  })
+
+  document.querySelector('#linkStylesheet').addEventListener('click', () => {
+    const link = document.createElement('link')
+    link.rel  = 'stylesheet'
+    link.type = 'text/css'
+    link.id = 'externalStylesheet'
+    link.href = './test.css';
+    document.head.appendChild(link)
+  })
+
+  document.querySelector('#linkStylesheetRemove').addEventListener('click', () => {
+    const link = document.querySelector('#externalStylesheet')
+    if (link) {
+      link.parentNode.removeChild(link)
+    }
+  })
+</script>
+<script src="../build/sauron-style.js"></script>
+<script>
+const styleWatcher = new SauronStyle(document.querySelector('#test'))
+styleWatcher.subscribe((diff, prev, next) => {
+  console.log(JSON.stringify(diff, null, 2))
+})
+</script>
+</body>
+</html>
