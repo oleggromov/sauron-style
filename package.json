@@ -1,0 +1,17 @@
+{
+  "name": "sauron-style",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Oleg Gromov",
+  "license": "MIT",
+  "scripts": {
+    "build:prod": "rm build/*; NODE_ENV=production webpack",
+    "build:dev": "rm build/*; webpack"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.11.0"
+  }
+}
