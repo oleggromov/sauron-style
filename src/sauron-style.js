@@ -1,21 +1,18 @@
 import { getDiff, getCopy } from './object-utils'
 import { getDocumentObserver } from './document-observer'
 
-const MutationObserver = window.MutationObserver
-const getComputedStyle = window.getComputedStyle
-
 class SauronStyle {
   constructor (node) {
     this.node = node
     this.checkDiff = this.checkDiff.bind(this)
-    this.mutationObserver = new MutationObserver(this.checkDiff)
+    this.mutationObserver = new window.MutationObserver(this.checkDiff)
     this.mutationObserver.observe(this.node, {
       attributes: true,
       attributeOldValue: true,
       attributeFilter: ['style', 'class']
     })
 
-    this.computedStyle = getComputedStyle(this.node)
+    this.computedStyle = window.getComputedStyle(this.node)
     this.style = this.getStyle()
 
     this.documentObserver = getDocumentObserver()
@@ -31,7 +28,7 @@ class SauronStyle {
     this.subscriber = fn
   }
 
-  checkDiff (mutations, instance) {
+  checkDiff () {
     const newStyle = this.getStyle()
     const diff = getDiff(this.style, newStyle)
 

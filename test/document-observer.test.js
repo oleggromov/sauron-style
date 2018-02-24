@@ -1,7 +1,8 @@
 import DocumentObserver, { getDocumentObserver } from '../src/document-observer'
+import { MutationObserverMock } from './helpers'
 
 describe('DocumentObserver', () => {
-  global.window.MutationObserver = () => ({ observe: () => {} })
+  global.window.MutationObserver = MutationObserverMock
 
   let observer, callback, id
 
