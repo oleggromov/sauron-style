@@ -47,6 +47,7 @@ If the library becomes used widely, I'll possibly think about implementing smart
 
 ## ToDo
 - **not covered cases:**
+  - parent style updates (`class`, `style attributes`)
   - transitions on parents (can they affect anyhow?)
 - ~split library into modules~
 - ~lint~
