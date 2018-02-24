@@ -39,7 +39,7 @@ Written above means you should use the difference with care.
 
 ## ToDo
 - ~split library into modules~
-- lint
+- ~lint~
 - test it:
   - write unit tests
   - add DOM tests
