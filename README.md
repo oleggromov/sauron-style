@@ -6,6 +6,21 @@ Works on top of `window.MutationObserver` and `window.getComputedStyle` so if yo
 
 **⚠️ Current implementation is SLOW!** Don't try to use it on many elements. What is many exactly? Depends on your clients' performance, but likely it's something over 50-100 elements at once on a usual modern laptop.
 
+## Quick Browser Usage Guide
+
+1. Clone the repository
+1. Build the library: `yarn build:prod`
+1. Copy `build/sauron-style.min.js` to somewhere in your project
+1. Connect it with to your page: `<script src="sauron-style.min.js"></script>`
+
+And observe an element you're interested in:
+```javascript
+const sauronStyle = new SauronStyle(document.querySelector('#item'))
+sauronStyle.subscribe(diff => {
+  console.log(diff)
+})
+```
+
 ## Assumptions and How It Works
 SauronStyle watches element attribute changes, such as `class` and `style`. Apparently, any change of those might cause computed CSS changes as well. In the same way changes to parent elements can affect the styling of an observable element. Consider, for instance, class `orange` applied to a parent when a stylesheet has the following line:
 
