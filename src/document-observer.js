@@ -8,6 +8,8 @@ class DocumentObserver {
     this.listeners = {}
     this.observer = new window.MutationObserver(mutations => mutations.forEach(this.observe.bind(this)))
     this.observer.observe(window.document, {
+      attributes: true,
+      attributeFilter: ['class'],
       childList: true,
       subtree: true
     })
@@ -31,6 +33,14 @@ class DocumentObserver {
   }
 
   observe (mutation) {
+    if (mutation.type === 'childList') {
+      this.checkElements(mutation)
+    } else if (mutation.type === 'attributes') {
+      this.invokeAll()
+    }
+  }
+
+  checkElements (mutation) {
     const added = getArray(mutation.addedNodes)
     const removed = getArray(mutation.removedNodes)
 
