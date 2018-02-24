@@ -1,6 +1,3 @@
-const MutationObserver = window.MutationObserver
-const document = window.document
-
 const isLink = node => node.tagName === 'LINK'
 const isStyle = node => node.tagName === 'STYLE'
 const getArray = list => Array.prototype.filter.call(list, node => isStyle(node) || isLink(node))
@@ -9,8 +6,8 @@ class DocumentObserver {
   constructor () {
     this.nextId = 0
     this.listeners = {}
-    this.observer = new MutationObserver(mutations => mutations.forEach(this.observe.bind(this)))
-    this.observer.observe(document, {
+    this.observer = new window.MutationObserver(mutations => mutations.forEach(this.observe.bind(this)))
+    this.observer.observe(window.document, {
       childList: true,
       subtree: true
     })

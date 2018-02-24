@@ -45,7 +45,7 @@ Written above means you should use the difference with care.
   - add DOM tests
   - performance tests
 - set up build:
-  - make it work for browsers
+  - ~make it work for browsers~
   - CommonJS
   - import
 - add CI (try travis?)
