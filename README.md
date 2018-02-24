@@ -34,15 +34,25 @@ Another drawback of using computed style watching is that not only "atomic" CSS 
   }
 }
 ```
-
 Written above means you should use the difference with care.
 
+### Low Performance
+
+Currently, performance is one of strong considerations about project viability. Due to `getComputedStyle` usage, the library is inherently slow - on my MacBook 2013 it takes about *1-5ms* to get computedStyle copy for 1 element.
+
+**Be extremely careful when adding listeners to more than 50-100 elements!**
+
+If the library becomes used widely, I'll possibly think about implementing smarter style difference algorithms but the worst-case scenario performance will always gravitate towards asympote, i.e. be slow.
+
+
 ## ToDo
+- **not covered cases:**
+  - transitions on parents
 - ~split library into modules~
 - ~lint~
 - test it:
   - write unit tests
-  - add DOM tests
+  - add integration tests
   - performance tests
 - set up build:
   - ~make it work for browsers~
