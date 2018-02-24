@@ -1,4 +1,4 @@
-const isLink = node => node.tagName === 'LINK'
+const isLink = node => node.tagName === 'LINK' && node.rel === 'stylesheet'
 const isStyle = node => node.tagName === 'STYLE'
 const getArray = list => Array.prototype.filter.call(list, node => isStyle(node) || isLink(node))
 
