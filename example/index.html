@@ -5,10 +5,13 @@
 
 <style>
   .blue { color: blue; }
+  .orange div { border: 3px orange solid; }
 </style>
 </head>
 <body>
-  <div id="test">A test div <code>#test</code></div>
+  <div id="parent">
+    <div id="test">A test div <code>#test</code></div>
+  </div>
 
   <h2>Change styles:</h2>
   <button id="inline">inline style</button>
@@ -18,6 +21,9 @@
   <button id="styleElementDivRemove">remove a style element</button>
   <button id="linkStylesheet">a link[rel="stylesheet"]</button>
   <button id="linkStylesheetRemove">remove a link[rel="stylesheet"]</button>
+  <br>
+  <button id="parentClass">parent add class</button>
+  <button id="parentClassRemove">parent remove class</button>
 
   <div id="sample"></div>
 
@@ -69,6 +75,14 @@
     if (link) {
       link.parentNode.removeChild(link)
     }
+  })
+
+  document.querySelector('#parentClass').addEventListener('click', () => {
+    document.querySelector('#parent').className = 'orange'
+  })
+
+  document.querySelector('#parentClassRemove').addEventListener('click', () => {
+    document.querySelector('#parent').className = ''
   })
 </script>
 <script src="../build/sauron-style.js"></script>
