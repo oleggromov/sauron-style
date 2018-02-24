@@ -7,14 +7,20 @@
   "scripts": {
     "build:prod": "rm build/*; NODE_ENV=production webpack",
     "build:dev": "rm build/*; webpack",
-    "lint": "node_modules/.bin/standard --verbose src/* | node_modules/.bin/snazzy"
+    "lint": "node_modules/.bin/standard --verbose src/* test/* | node_modules/.bin/snazzy",
+    "test:unit": "node_modules/.bin/jest test/*",
+    "test:unit:coverage": "node_modules/.bin/jest --coverage test/*"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "jest": "^22.4.2",
     "snazzy": "^7.0.0",
     "standard": "^11.0.0",
     "webpack": "^3.11.0"
+  },
+  "standard": {
+    "env": ["jest"]
   }
 }
