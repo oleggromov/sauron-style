@@ -9,7 +9,7 @@ SauronStyle watches element attribute changes, such as `class` and `style`. Appa
 
 Another way of affecting element representation is via external stylesheets. They could be added by inserting `style` or `link` elements into a document or removing any of them. This is also watched by SauronStyle.
 
-Since `getComputedStyle` method is used, reported changes are always sent in a kind of *normalized* form. For example, setting `transform: rotate(-2deg)` for an element will cause the following difference to be reported:
+Since `getComputedStyle` method is used, reported changes are always sent in [resolved form](https://developer.mozilla.org/en-US/docs/Web/CSS/resolved_value). For example, setting `transform: rotate(-2deg)` for an element will cause the following difference to be reported:
 
 ```javascript
 {
@@ -20,7 +20,7 @@ Since `getComputedStyle` method is used, reported changes are always sent in a k
 }
 ```
 
-Another drawback of using computed style watching is that not only "atomic" CSS props are updated but also compound ones, and vice versa. For example, setting `background: red` will cause the following difference:
+Another drawback of using computed style watching is that not only longhand CSS props are updated but also shorthand ones, and vice versa. For example, setting `background: red` will cause the following difference:
 
 ```javascript
 {
@@ -28,7 +28,7 @@ Another drawback of using computed style watching is that not only "atomic" CSS 
     cur: "rgb(255, 255, 0) none repeat scroll 0% 0% / auto padding-box border-box",
     prev: "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box"
   },
-  "backgroundColor": {
+  backgroundColor: {
     cur: "rgb(255, 255, 0)",
     prev: "rgba(0, 0, 0, 0)"
   }
@@ -47,7 +47,7 @@ If the library becomes used widely, I'll possibly think about implementing smart
 
 ## ToDo
 - **not covered cases:**
-  - transitions on parents
+  - transitions on parents (can they affect anyhow?)
 - ~split library into modules~
 - ~lint~
 - test it:
