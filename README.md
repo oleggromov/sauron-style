@@ -87,7 +87,7 @@ If the library becomes used widely, I'll possibly think about implementing smart
   - add deploy to some (free) CDN
 - promo
   - create github page
-  - write a blog article
-  - publish to dev.to
-  - publish to twitter/facebook
+  - ~write a [blog article](http://oleggromov.com/notes/2018-02-observing-style-changes/)~
+  - ~[publish to dev.to](https://dev.to/oleggromov/observing-style-changes---d4f)~
+  - ~publish to twitter/facebook~
 
