@@ -8,7 +8,6 @@ class SauronStyle {
     this.mutationObserver = new window.MutationObserver(this.checkDiff)
     this.mutationObserver.observe(this.node, {
       attributes: true,
-      attributeOldValue: true,
       attributeFilter: ['style', 'class']
     })
 
