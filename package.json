@@ -1,7 +1,7 @@
 {
   "name": "sauron-style",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/sauron-style.js",
   "author": "Oleg Gromov",
   "license": "MIT",
   "scripts": {
