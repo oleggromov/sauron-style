@@ -73,6 +73,7 @@ If the library becomes used widely, I'll possibly think about implementing smart
 ## ToDo
 - **not covered cases:**
   - handle transitions on parents with account for [browser differences](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle#Notes)
+  - pseudo-classes like :hover and :focus
 - ~split library into modules~
 - ~lint~
 - test it:
