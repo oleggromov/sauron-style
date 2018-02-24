@@ -1,11 +1,21 @@
-# SauronStyle
+# SauronStyle 👁
 
-JavaScript library to observe style changes on any DOM element. For an observed element, on every computedStyle change returns a difference object.
+JavaScript library to observe style changes on any DOM element. For an observed element, on every computed style change returns a difference object.
 
 Works on top of `window.MutationObserver` and `window.getComputedStyle` so if your target browsers do not support these global interfaces, unfortunately, it won't help you.
 
+**⚠️ Current implementation is SLOW!** Don't try to use it on many elements. What is many exactly? Depends on your clients' performance, but likely it's something over 50-100 elements at once on a usual modern laptop.
+
 ## Assumptions and How It Works
-SauronStyle watches element attribute changes, such as `class` and `style`. Apparently, any change of those might cause computed CSS changes as well.
+SauronStyle watches element attribute changes, such as `class` and `style`. Apparently, any change of those might cause computed CSS changes as well. In the same way changes to parent elements can affect the styling of an observable element. Consider, for instance, class `orange` applied to a parent when a stylesheet has the following line:
+
+```css
+.orange .watchedElement {
+  height: 250px;
+}
+```
+
+Without observing parent element `class` attribute changes we won't be able to spot such a change on `.watchedElement`.
 
 Another way of affecting element representation is via external stylesheets. They could be added by inserting `style` or `link` elements into a document or removing any of them. This is also watched by SauronStyle.
 
@@ -36,18 +46,18 @@ Another drawback of using computed style watching is that not only longhand CSS 
 ```
 Written above means you should use the difference with care.
 
-### Low Performance
+### ⚠️ Low Performance
 
-Currently, performance is one of strong considerations about project viability. Due to `getComputedStyle` usage, the library is inherently slow - on my MacBook 2013 it takes about *1-5ms* to get computedStyle copy for 1 element.
+Currently, performance is one of the strong considerations about project viability. Due to `getComputedStyle` usage, the library is inherently slow - on my MacBook 2013, it takes about *1-5ms* to get a copy of computed styles for 1 element.
 
 **Be extremely careful when adding listeners to more than 50-100 elements!**
 
-If the library becomes used widely, I'll possibly think about implementing smarter style difference algorithms but the worst-case scenario performance will always gravitate towards asympote, i.e. be slow.
+If the library becomes used widely, I'll possibly think about implementing smarter style difference algorithms but the worst-case scenario performance will always gravitate towards asymptote, i.e. be slow.
 
 
 ## ToDo
 - **not covered cases:**
-  - transitions on parents (can they affect anyhow?)
+  - handle transitions on parents with account for [browser differences](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle#Notes)
 - ~split library into modules~
 - ~lint~
 - test it:
