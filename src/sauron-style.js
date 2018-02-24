@@ -5,7 +5,7 @@ const MutationObserver = window.MutationObserver
 const getComputedStyle = window.getComputedStyle
 
 class SauronStyle {
-  constructor(node) {
+  constructor (node) {
     this.node = node
     this.checkDiff = this.checkDiff.bind(this)
     this.mutationObserver = new MutationObserver(this.checkDiff)
@@ -22,16 +22,16 @@ class SauronStyle {
     this.listenerId = this.documentObserver.addListener(this.checkDiff)
   }
 
-  destroy() {
+  destroy () {
     this.mutationObserver.disconnect()
     this.documentObserver.removeListener(this.listenerId)
   }
 
-  subscribe(fn) {
+  subscribe (fn) {
     this.subscriber = fn
   }
 
-  checkDiff(mutations, instance) {
+  checkDiff (mutations, instance) {
     const newStyle = this.getStyle()
     const diff = getDiff(this.style, newStyle)
 
@@ -43,7 +43,7 @@ class SauronStyle {
     }
   }
 
-  getStyle() {
+  getStyle () {
     return getCopy(this.computedStyle)
   }
 }

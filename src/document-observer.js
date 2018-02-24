@@ -6,7 +6,7 @@ const isStyle = node => node.tagName === 'STYLE'
 const getArray = list => Array.prototype.filter.call(list, node => isStyle(node) || isLink(node))
 
 class DocumentObserver {
-  constructor() {
+  constructor () {
     this.nextId = 0
     this.listeners = {}
     this.observer = new MutationObserver(mutations => mutations.forEach(this.observe.bind(this)))
@@ -16,16 +16,16 @@ class DocumentObserver {
     })
   }
 
-  addListener(listener) {
+  addListener (listener) {
     this.listeners[this.nextId] = listener
     return this.nextId++
   }
 
-  removeListener(id) {
+  removeListener (id) {
     delete this.listeners[id]
   }
 
-  invokeAll() {
+  invokeAll () {
     for (let key in this.listeners) {
       if (this.listeners.hasOwnProperty(key)) {
         this.listeners[key]()
@@ -33,7 +33,7 @@ class DocumentObserver {
     }
   }
 
-  observe(mutation) {
+  observe (mutation) {
     const added = getArray(mutation.addedNodes)
     const removed = getArray(mutation.removedNodes)
 
