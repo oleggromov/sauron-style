@@ -12,7 +12,10 @@ const WITH_MINIFICATION = [
 ]
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/sauron-style.js'),
+  entry: path.resolve(__dirname, 'src/sauron-style.ts'),
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
   output: {
     library: 'SauronStyle',
     libraryTarget: 'window',
@@ -23,9 +26,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js?$/,
+        test: /\.(ts|js)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'awesome-typescript-loader'
       }
     ]
   },
