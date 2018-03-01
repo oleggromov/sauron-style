@@ -3,7 +3,7 @@ interface Diff {
   cur: any
 }
 
-interface DiffResult {
+export interface DiffResult {
   [key: string]: Diff
 }
 

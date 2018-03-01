@@ -1,11 +1,19 @@
-import { getDiff, getCopy } from './object-utils'
-import { getDocumentObserver } from './document-observer'
+import { getDiff, getCopy, DiffResult } from './object-utils'
+import { getDocumentObserver, default as DocumentObserver } from './document-observer'
 
 class SauronStyle {
-  constructor (node) {
+  private node: HTMLElement
+  private mutationObserver: MutationObserver
+  private computedStyle: CSSStyleDeclaration
+  private style: Object
+  private subscriber: Function|null = null
+  private documentObserver: DocumentObserver
+  private listenerId: number
+
+  constructor (node: HTMLElement) {
     this.node = node
     this.checkDiff = this.checkDiff.bind(this)
-    this.mutationObserver = new window.MutationObserver(this.checkDiff)
+    this.mutationObserver = new (<any>window).MutationObserver(this.checkDiff)
     this.mutationObserver.observe(this.node, {
       attributes: true,
       attributeFilter: ['style', 'class']
@@ -18,18 +26,18 @@ class SauronStyle {
     this.listenerId = this.documentObserver.addListener(this.checkDiff)
   }
 
-  destroy () {
+  destroy (): void {
     this.mutationObserver.disconnect()
     this.documentObserver.removeListener(this.listenerId)
   }
 
-  subscribe (fn) {
+  subscribe (fn: Function): void {
     this.subscriber = fn
   }
 
-  checkDiff () {
+  checkDiff (): void {
     const newStyle = this.getStyle()
-    const diff = getDiff(this.style, newStyle)
+    const diff: DiffResult = getDiff(this.style, newStyle)
 
     if (Object.keys(diff).length) {
       if (this.subscriber) {
@@ -39,7 +47,7 @@ class SauronStyle {
     }
   }
 
-  getStyle () {
+  getStyle (): Object {
     return getCopy(this.computedStyle)
   }
 }
