@@ -12,7 +12,7 @@ const WITH_MINIFICATION = [
 ]
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/sauron-style.js'),
+  entry: path.resolve(__dirname, 'src/sauron-style.ts'),
   resolve: {
     extensions: ['.ts', '.js']
   },
