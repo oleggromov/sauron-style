@@ -7,16 +7,13 @@
   "scripts": {
     "build:prod": "rm build/*; NODE_ENV=production webpack",
     "build:dev": "rm build/*; webpack",
-    "lint": "node_modules/.bin/standard --verbose src/* test/* | node_modules/.bin/snazzy",
     "test:unit": "node_modules/.bin/jest test/*",
     "test:unit:coverage": "node_modules/.bin/jest --coverage test/*"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.5.0",
     "jest": "^22.4.2",
-    "snazzy": "^7.0.0",
     "source-map-loader": "^0.2.3",
-    "standard": "^11.0.0",
     "typescript": "^2.7.2",
     "webpack": "^3.11.0"
   },
