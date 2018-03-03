@@ -7,11 +7,11 @@ export interface DiffResult {
   [key: string]: Diff
 }
 
-interface Object {
+interface AnObject {
   [key: string]: any
 }
 
-export const getDiff = (a: Object, b: Object): DiffResult => {
+export const getDiff = (a: AnObject, b: AnObject): DiffResult => {
   let diff: DiffResult = {}
   for (let key in b) {
     if (b.hasOwnProperty(key) && b[key] !== a[key]) {
@@ -24,7 +24,7 @@ export const getDiff = (a: Object, b: Object): DiffResult => {
   return diff
 }
 
-export const getCopy = (obj: Object): Object => {
+export const getCopy = (obj: AnObject): AnObject => {
   let result: Object = {}
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
