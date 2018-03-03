@@ -1,10 +1,8 @@
-interface Diff {
-  prev: any,
-  cur: any
-}
-
 export interface DiffResult {
-  [key: string]: Diff
+  [key: string]: {
+    prev: any,
+    cur: any
+  }
 }
 
 interface AnObject {
