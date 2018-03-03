@@ -7,13 +7,14 @@
   "scripts": {
     "build:prod": "rm build/*; NODE_ENV=production webpack",
     "build:dev": "rm build/*; webpack",
-    "test:unit": "node_modules/.bin/jest test/*",
-    "test:unit:coverage": "node_modules/.bin/jest --coverage test/*"
+    "test:unit": "node_modules/.bin/jest",
+    "test:unit:coverage": "node_modules/.bin/jest --coverage"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.5.0",
     "jest": "^22.4.2",
     "source-map-loader": "^0.2.3",
+    "ts-jest": "^22.4.0",
     "typescript": "^2.7.2",
     "webpack": "^3.11.0"
   }
