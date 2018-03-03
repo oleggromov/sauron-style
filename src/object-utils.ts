@@ -25,7 +25,7 @@ export const getDiff = (a: AnObject, b: AnObject): DiffResult => {
 }
 
 export const getCopy = (obj: AnObject): AnObject => {
-  let result: Object = {}
+  let result: AnObject = {}
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       result[key] = obj[key]
